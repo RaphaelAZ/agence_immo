@@ -1,0 +1,43 @@
+{# Entête de la page / Inclusion #}
+{% include 'header.html.twig' %}
+<body class="bg-light">
+
+    {# Barre de Navigation #}
+    {% include 'navigation.html.twig' %}
+
+    {# Contenu de la page #}
+   <div id="content" class="container mt-4">
+        <div>
+            <h1 class="h1 text-danger">Agence Azera</h1>
+        </div>
+        <hr>
+        {% block announces %}
+            <div class="card-deck announces-list flex-wrap">
+                {% for announce in announces %}
+                    <div class="card mb-4 announces-card">
+                        <div class="card-body d-flex align-items-center flex-column">
+                        <div>
+                            <div class="card-img">
+                                <img src="images/announce_img/{{ announce.image }}" class="main-img rounded">
+                            </div>
+                            <div class="ml-3 mr-auto mt-2 mb-3">
+                                <h5 class="card-title">{{ announce.title }}</h5>
+                                <hr>
+                                <p class="card-text d-flex align-items-center">
+                                    <span>{{ announce.location }} - {{ announce.surface }}m²</span>
+                                </p>
+                                <!-- Ajoutez d'autres propriétés d'annonce au besoin -->
+                            </div>
+                        </div>
+                            <a href="/annonce/{{ announce.id }}" class="btn btn-info mt-auto ml-auto">Voir Plus</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endblock %}
+    </div>
+
+    {# Pied de page #}
+    {% include 'footer.html.twig' %}
+</body>
+</html>

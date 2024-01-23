@@ -1,0 +1,21 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+annonces:
+    path: /annonces
+    controller: App\Controller\AnnounceController::announcesList
+
+annonce:
+    path: '/annonce/{id}'
+    controller: App\Controller\AnnounceController::uniqueAnnounce
+
+accueil:
+    path: '/accueil'
+    controller: App\Controller\AnnounceController::homePage
+
+contact:
+    path: '/contact'
+    controller: App\Controller\ContactController::contactInitialization

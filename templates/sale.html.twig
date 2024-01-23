@@ -1,0 +1,35 @@
+{# Entête de la page / Inclusion #}
+{% include 'header.html.twig' %}
+<body class="bg-light">
+
+    {# Barre de Navigation #}
+    {% include 'navigation.html.twig' %}
+
+    {# Contenu de la page #}
+   <div id="content" class="container mt-4">
+        <div>
+        <a href="/accueil" class="btn btn-danger mb-2">Retour</a>
+        </div>
+        <hr>
+        {% block announces %}
+        <div class="announce">
+            <h2>{{ sale.title }}</h2>
+            <img src="../images/announce_img/{{ sale.image }}" class="img-details rounded mt-3">
+            <p class="text-secondary ml-2 mt-2">Création : {{ creation }}</p>
+            <hr>
+            <div class="mb-5">
+                <h5>{{ sale.type }} - {{ sale.surface }}m²</h5>
+                <span class="text-danger"><strong>PRIX :</strong> {{ sale.price }}€</span>
+                <p><strong>Localisation :</strong> {{ sale.type }}</p>
+                <hr>
+                <h4>Détails :</h4>
+                <p class="ml-3">{{ sale.description }}</p>
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+
+    {# Pied de page #}
+    {% include 'footer.html.twig' %}
+</body>
+</html>

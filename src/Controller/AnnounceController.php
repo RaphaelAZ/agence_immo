@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Controller;
+
+use App\Entity\Announce;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+class AnnounceController extends AbstractController
+{
+    public function announcesList(ManagerRegistry $doctrine) {
+        $announces = $doctrine->getRepository(Announce::class)->findAll();
+        return $this->render('announces.html.twig',['announces' => $announces]);;
+    }
+
+    public function uniqueAnnounce(ManagerRegistry $doctrine, int $id) {
+        $uniqueAnnounce = $doctrine->getRepository(Announce::class)->findOneBy(["id"=> $id]);
+        $creationDate = $uniqueAnnounce->getCreation()->format("Y-m-d");
+        return $this->render('sale.html.twig',['sale' => $uniqueAnnounce, 'creation' => $creationDate]);
+    }
+
+    public function homePage() {
+        return $this->render('home.html.twig',[]);;
+    }
+}

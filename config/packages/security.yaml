@@ -15,15 +15,15 @@ security:
         main:
             pattern: ^/
             form_login:
-                login_path: login
-                check_path: login
-                default_target_path: home
+                login_path: connexion
+                check_path: connexion
+                default_target_path: accueil
             logout:
-                path: logout
-                target: home
+                path: deconnexion
+                target: accueil
 
     access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/accueil, roles: ROLE_USER }
 
     role_hierarchy:
         ROLE_USER:        ROLE_USER

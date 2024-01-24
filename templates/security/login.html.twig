@@ -17,12 +17,12 @@
                     <h2>Connexion</h2>
 
                     {% if error %}
-                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                     {% endif %}
 
                     {{ form_start(form) }}
-                    {{ form_row(form.username) }}
-                    {{ form_row(form.password) }}
+                    {{ form_row(form._username) }}
+                    {{ form_row(form._password) }}
                     <button type="submit" class="btn btn-primary">Se connecter</button>
                     {{ form_end(form) }}
                 </div>

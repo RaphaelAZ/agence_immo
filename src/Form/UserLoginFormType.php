@@ -15,13 +15,13 @@ class UserLoginFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username', TextType::class, [
+            ->add('_username', TextType::class, [
                 'label' => 'Nom d\'utilisateur',
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control', 'name'=> '_username'],
             ])
-            ->add('password', PasswordType::class, [
+            ->add('_password', PasswordType::class, [
                 'label' => 'Mot de passe',
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control', 'name'=> '_password'],
             ])
         ;
     }
@@ -29,7 +29,10 @@ class UserLoginFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
         ]);
+    }
+
+    public function getBlockPrefix(): string {
+        return '';
     }
 }

@@ -31,8 +31,6 @@ class SecurityController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $form->setData($form->getData());
-
             return $this->redirectToRoute('accueil');
         }
 

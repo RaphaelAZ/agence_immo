@@ -8,35 +8,27 @@ use App\Form\SendContactType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class ContactController extends AbstractController
 {
-    public function contactInitialization(Request $request, ManagerRegistry $doctrine) {
-        $contact = new Contact();
-        $form = $this->createForm(SendContactType::class, $contact);
+    public function contactInitialization(Request $request, MailerInterface $mailer) {
 
-        $contact->setDatePost(new \DateTime());
-
-        var_dump($contact);
+        $form = $this->createForm(SendContactType::class);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($contact);
-            $entityManager->flush();
+            $email = (new Email())
+                ->from($form->getData()['email'])
+                ->to('azera.immo@gmail.com')
+                ->subject($form->getData()['subject'])
+                ->text($form->getData()['message']);
 
-            $receiver = "razevedo@myges.fr";
-            $sujet = "OBJET";
-            $message = "MESSAGE";
-            $headers = "From: "."EMAIL"."";
-            $mail_success = mail($receiver, $sujet, $message, $headers); //TODO CORRIGER LE SERVEUR SMTP
-
-            if ($mail_success) {
-                return $this->render('contact.html.twig',['success'=>"L'e-mail a été envoyé avec succès !"]);
-            } else {
-                return $this->render('contact.html.twig',['error'=>"Erreur lors de l'envoi de l'e-mail."]);
-            }
+            if ($mailer->send($email)) {
+                header('Location: /accueil');
+            }  
         }
 
         return $this->render('contact.html.twig',['form' => $form->createView()]);

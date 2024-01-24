@@ -19,7 +19,7 @@ class SendContactType extends AbstractType
                 'label' => 'Email :',
                 'attr' => ['class' => 'form-control'],
             ])
-            ->add('object', TypeTextType::class, [
+            ->add('subject', TypeTextType::class, [
                 'label' => 'Objet :',
                 'attr' => ['class' => 'form-control'],
             ])
@@ -32,8 +32,6 @@ class SendContactType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'data_class' => Contact::class,
-        ]);
+        $resolver->setDefaults([]);
     }
 }

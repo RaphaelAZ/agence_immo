@@ -1,0 +1,35 @@
+{# Entête de la page / Inclusion #}
+{% include 'header.html.twig' %}
+    <body class="bg-light">
+
+        {# Barre de Navigation #}
+        {% include 'navigation.html.twig' %}
+
+        {# Contenu de la page #}
+    <div id="content" class="container mt-4">
+            <div>
+                <h1 class="h1 text-danger">Agence Azera</h1>
+            </div>
+            <hr>
+
+            {% block body %}
+                <div class="mb-5">
+                    <h2>Connexion</h2>
+
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {{ form_start(form) }}
+                    {{ form_row(form.username) }}
+                    {{ form_row(form.password) }}
+                    <button type="submit" class="btn btn-primary">Se connecter</button>
+                    {{ form_end(form) }}
+                </div>
+            {% endblock %}
+        </div>
+
+        {# Pied de page #}
+        {% include 'footer.html.twig' %}
+    </body>
+</html>

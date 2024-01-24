@@ -1,0 +1,30 @@
+{# Entête de la page / Inclusion #}
+{% include 'header.html.twig' %}
+    <body class="bg-light">
+
+        {# Barre de Navigation #}
+        {% include 'navigation.html.twig' %}
+
+        {# Contenu de la page #}
+            <div id="content" class="container mt-4 mb-5">
+                    <div>
+                        <h1 class="h1 text-danger">Agence Azera</h1>
+                    </div>
+                    <hr>
+                    {% block register %}
+                        <h2>Inscription</h2>
+
+                        {{ form_start(form) }}
+                        {{ form_row(form.username) }}
+                        {{ form_row(form.password) }}
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.phone) }}
+                        <button type="submit" class="btn btn-primary">S'inscrire</button>
+                        {{ form_end(form) }}
+                    {% endblock %}
+            </div>
+
+        {# Pied de page #}
+        {% include 'footer.html.twig' %}
+    </body>
+</html>

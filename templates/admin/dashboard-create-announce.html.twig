@@ -1,0 +1,25 @@
+{# Entête de la page / Inclusion #}
+{% include 'header.html.twig' %}
+<body class="bg-light">
+
+    {# Barre de Navigation #}
+    {% include 'navigation.html.twig' %}
+
+    {# Contenu de la page #}
+    <div id="content" class="container mt-5 mb-5">
+        <div class="container d-flex justify-content-between">
+            <a href="/accueil" class="btn btn-danger mb-2">Retour</a>
+            <a href="/panel/annonces" class="btn btn-info mb-2">Voir les Annonces</a>
+        </div>
+        <div class="text-center mb-4">
+            <h4>Création d'une annonce</h4>
+        </div>
+        {% block dashboard_create_announce %}
+            
+        {% endblock %}
+    </div>
+
+    {# Pied de page #}
+    {% include 'footer.html.twig' %}
+</body>
+</html>

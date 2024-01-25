@@ -20,6 +20,6 @@ class AnnounceController extends AbstractController
     }
 
     public function homePage() {
-        return $this->render('home.html.twig',[]);;
+        return $this->render('home.html.twig',[]);
     }
 }

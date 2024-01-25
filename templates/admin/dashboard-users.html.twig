@@ -1,0 +1,57 @@
+{# Entête de la page / Inclusion #}
+{% include 'header.html.twig' %}
+<body class="bg-light">
+
+    {# Barre de Navigation #}
+    {% include 'navigation.html.twig' %}
+
+    {# Contenu de la page #}
+    <div id="content" class="container mt-5 mb-5">
+        <div class="container d-flex justify-content-between">
+            <a href="/accueil" class="btn btn-danger mb-2">Retour</a>
+            <a href="/panel/annonces" class="btn btn-info mb-2">Voir les Annonces</a>
+        </div>
+        <div class="text-center mb-4">
+            <h4>Administration des utilisateurs</h4>
+        </div>
+        {% block dashboard_users %}
+            <table class="table mt-3 text-center">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Utilisateur</th>
+                        <th>Role</th>
+                        <th>E-mail</th>
+                        <th>Téléphone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{user.id}}</td>
+                            <td>{{user.username}}</td>
+                            {% if user.roles[0]=='ROLE_SUPER_ADMIN' %}
+                            <td>Super Administrateur</td>
+                            {% elseif user.roles[0]=='ROLE_ADMIN' %}
+                            <td>Administrateur</td>
+                            {% else %}
+                            <td>Membre</td>
+                            {% endif %}
+                            <td>{{user.email}}</td>
+                            <td>{{user.phone}}</td>
+                            <td>
+                                <a href="" class="btn btn-primary rounded-pill">Éditer</a>
+                                <a href="" class="btn btn-danger rounded-pill">Supprimer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endblock %}
+    </div>
+
+    {# Pied de page #}
+    {% include 'footer.html.twig' %}
+</body>
+</html>

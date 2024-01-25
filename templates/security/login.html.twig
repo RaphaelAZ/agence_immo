@@ -17,7 +17,9 @@
                     <h2>Connexion</h2>
 
                     {% if error %}
-                        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        <div class="m-5 p-2 text-center bg-danger text-white rounded">
+                            <h5>{{ error.messageKey|trans(error.messageData, 'security') }}</hh5>
+                        </div>
                     {% endif %}
 
                     {{ form_start(form) }}

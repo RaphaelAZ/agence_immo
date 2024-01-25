@@ -20,7 +20,5 @@ contact:
     path: '/contact'
     controller: App\Controller\ContactController::contactInitialization
 
-# admin_dashboard:
-#     path: /admin/dashboard
-#     controller: App\Controller\AdminController::dashboard
-#     methods: [GET]
+deconnexion:
+    path: '/deconnexion'

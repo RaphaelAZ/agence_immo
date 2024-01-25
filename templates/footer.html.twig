@@ -11,8 +11,12 @@
                     <li><a href="/accueil">Accueil</a></li>
                     <li><a href="/annonces">Annonces</a></li>
                     <li><a href="/contact">Contact</a></li>
+                    {% if app.user %}
+                    <li><a href="/deconnexion">Déconnexion</a></li>
+                    {% else %}
                     <li><a href="/inscription">S'inscrire</a></li>
                     <li><a href="/connexion">Se connecter</a></li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="col-md-3">

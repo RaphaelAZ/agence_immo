@@ -1,6 +1,7 @@
 Import de données nécéssaires :
   - Path du script pour la bdd : database/agence_immo.sql
 
+
 Tâches réalisées :
   - Phase 1 (Obligatoire) :
     - Page d’accueil présentation agence immobilière
@@ -15,6 +16,7 @@ Tâches réalisées :
   - BONUS :
     - Comptes pour les clients
     
+
 
 Tâches restantes :
   - Phase 4 : 

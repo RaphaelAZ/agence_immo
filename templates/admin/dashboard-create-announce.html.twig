@@ -14,8 +14,16 @@
         <div class="text-center mb-4">
             <h4>Création d'une annonce</h4>
         </div>
+        {% if success is defined %}
+        <div class="p-3 mb-2 mt-2 text-center rounded bg-success text-white">
+            <h3>{{success}}</h3>
+        </div>
+        {% endif %}
         {% block dashboard_create_announce %}
-            
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn-primary mb-2">Envoyer la demande</button>
+            {{ form_end(form) }}
         {% endblock %}
     </div>
 

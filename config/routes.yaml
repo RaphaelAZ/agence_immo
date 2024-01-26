@@ -22,3 +22,6 @@ contact:
 
 deconnexion:
     path: '/deconnexion'
+
+panel_admin:
+    path: '/panel'

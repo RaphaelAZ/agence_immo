@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Announce;
+use App\Repository\AnnounceRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -10,7 +11,7 @@ class AnnounceController extends AbstractController
 {
     public function announcesList(ManagerRegistry $doctrine) {
         $announces = $doctrine->getRepository(Announce::class)->findAll();
-        return $this->render('announces.html.twig',['announces' => $announces]);;
+        return $this->render('announces.html.twig',['announces' => $announces,]);
     }
 
     public function uniqueAnnounce(ManagerRegistry $doctrine, int $id) {

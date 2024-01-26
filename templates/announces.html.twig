@@ -13,7 +13,7 @@
         <hr>
         {% block announces %}
             <div class="card-deck announces-list flex-wrap">
-                {% for announce in announces %}
+                {% for key, announce in announces %}
                     <div class="card mb-4 announces-card">
                         <div class="card-body d-flex align-items-center flex-column">
                         <div>

@@ -6,6 +6,7 @@ use App\Entity\Announce;
 use App\Repository\AnnounceRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
 
 class AnnounceController extends AbstractController
 {
@@ -22,5 +23,10 @@ class AnnounceController extends AbstractController
 
     public function homePage() {
         return $this->render('home.html.twig',[]);
+    }
+
+    #[Route('/favorite/{id}', name: 'inscription')]
+    public function favoriteThis($id) {
+        var_dump($id);
     }
 }

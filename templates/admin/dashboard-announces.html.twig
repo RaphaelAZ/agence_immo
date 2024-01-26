@@ -30,19 +30,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for annonce in announces %}
+                    {% for announce in announces %}
                         <tr>
-                            <td>{{ annonce.id }}</td>
-                            <td>{{ annonce.title }}</td>
-                            <td>{{ annonce.description }}</td>
-                            <td>{{ annonce.type }}</td>
-                            <td>{{ annonce.surface }}</td>
-                            <td>{{ annonce.price }}</td>
-                            <td>IMAGE</td>
+                            <td>{{ announce.id }}</td>
+                            <td>{{ announce.title }}</td>
+                            <td>{{ announce.description }}</td>
+                            <td>{{ announce.type }}</td>
+                            <td>{{ announce.surface }}</td>
+                            <td>{{ announce.price }}</td>
+                            <td><img src="{{ asset('images/announce_img/') }}{{announce.image}}" class="rounded dashboard-announce-img"></td>
                             <td class="d-flex flex-row">
-                                <a href="/annonce/{{annonce.id}}" class="btn btn-success rounded-pill ml-1">Voir</a>
-                                <a href="/panel/editeruneannonce/{{annonce.id}}" class="btn btn-primary rounded-pill ml-1">Éditer</a>
-                                <a href="/panel/supprimeruneannonce/{{annonce.id}}" class="btn btn-danger rounded-pill ml-1">Supprimer</a>
+                                <a href="/annonce/{{announce.id}}" class="btn btn-success rounded-pill ml-1">Voir</a>
+                                <a href="/panel/editeruneannonce/{{announce.id}}" class="btn btn-primary rounded-pill ml-1">Éditer</a>
+                                <a href="/panel/supprimeruneannonce/{{announce.id}}" class="btn btn-danger rounded-pill ml-1">Supprimer</a>
                             </td>
                         </tr>
                     {% endfor %}

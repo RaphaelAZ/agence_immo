@@ -13,7 +13,15 @@
         <hr>
         {% block announces %}
         <div class="announce">
-            <h2>{{ sale.title }}</h2>
+            <h2 class="d-flex align-center">
+            <span>{{ sale.title }}</span>
+            <span>
+                <button type="button" class="favori" onclick="toggleFavorite(this)">
+                    <span class="coeur-vide taille-coeur" data-annonce-id="{{sale.id}}">🤍</span>
+                    <span class="coeur-plein  taille-coeur" data-annonce-id="{{sale.id}}">❤️</span>
+                </button>
+            </span>
+            </h2>
             <img src="../images/announce_img/{{ sale.image }}" class="img-details rounded mt-3">
             <p class="text-secondary ml-2 mt-2">Création : {{ creation }}</p>
             <hr>

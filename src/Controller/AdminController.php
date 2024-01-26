@@ -3,17 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Announce;
-use App\Entity\User;
 use App\Form\AnnounceCreateFormType;
 use App\Repository\UserRepository;
 use DateTime;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
@@ -100,6 +96,8 @@ class AdminController extends AbstractController
             throw $this->createNotFoundException('Annonce non trouvée pour l\'id '.$id);
         }
 
+        $ancienneImage = $announce->getImage();
+
         $form = $this->createForm(AnnounceCreateFormType::class, $announce);
 
         $form->handleRequest($request);
@@ -114,6 +112,16 @@ class AdminController extends AbstractController
                     $fileName
                 );
                 $announce->setImage($fileName);
+
+                if ($ancienneImage) {
+                    $cheminAncienneImage = $this->getParameter('images_directory') . '/' . $ancienneImage;
+                
+                    $filesystem = new Filesystem();
+                
+                    if ($filesystem->exists($cheminAncienneImage)) {
+                        $filesystem->remove([$cheminAncienneImage]);
+                    }
+                }
             }
 
             // Mettre à jour les autres propriétés de l'annonce avec les données du formulaire

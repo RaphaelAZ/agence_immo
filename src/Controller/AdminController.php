@@ -89,4 +89,47 @@ class AdminController extends AbstractController
             'announces' => $announcesList,
         ]);
     }
+
+    #[Route('/panel/editeruneannonce/{id}', name: 'panel/editeruneannonce')]
+    #[IsGranted('ROLE_ADMIN')]
+    public function dashboardEditAnnounce(Request $request, EntityManagerInterface $em, $id) {
+        $announce = $em->getRepository(Announce::class)->find($id);
+
+        // Vérifier si l'annonce existe
+        if (!$announce) {
+            throw $this->createNotFoundException('Annonce non trouvée pour l\'id '.$id);
+        }
+
+        $form = $this->createForm(AnnounceCreateFormType::class, $announce);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form['image']->getData();
+            if ($file) {
+                // Gérer le téléchargement de la nouvelle image seulement si elle a été modifiée
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move(
+                    $this->getParameter('images_directory'),
+                    $fileName
+                );
+                $announce->setImage($fileName);
+            }
+
+            // Mettre à jour les autres propriétés de l'annonce avec les données du formulaire
+            $announce->setTitle($form->get('title')->getData());
+            $announce->setDescription($form->get('description')->getData());
+            $announce->setLocation($form->get('location')->getData());
+            $announce->setPrice($form->get('price')->getData());
+            $announce->setSurface($form->get('surface')->getData());
+            $announce->setType($form->get('type')->getData());
+            $announce->setCreation(new DateTime());
+
+            $em->flush();
+
+            return $this->render('admin/dashboard-update-announce.html.twig', ['form' => $form->createView(), 'success' => "Annonce modifiée avec succès."]);
+        }
+
+        return $this->render('admin/dashboard-update-announce.html.twig', ['form' => $form->createView()]);
+    }
 }

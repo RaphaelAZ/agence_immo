@@ -8,7 +8,7 @@
     {# Contenu de la page #}
     <div id="content" class="container mt-5 mb-5">
         <div class="container d-flex justify-content-between">
-            <a href="/accueil" class="btn btn-danger mb-2">Retour</a>
+            <button type="button" class="btn btn-danger mb-2" id='previous-page-button'>Retour</button>
             <a href="/panel/creeruneannonce" class="btn btn-success mb-2">Créer une annonce</a>
             <a href="/panel/utilisateurs" class="btn btn-info mb-2">Voir les Utilisateurs</a>
         </div>
@@ -40,8 +40,8 @@
                             <td>{{ annonce.price }}</td>
                             <td>IMAGE</td>
                             <td class="d-flex flex-row">
-                                <a href="/annonces" class="btn btn-success rounded-pill ml-1">Voir</a>
-                                <a href="" class="btn btn-primary rounded-pill ml-1">Éditer</a>
+                                <a href="/annonce/{{annonce.id}}" class="btn btn-success rounded-pill ml-1">Voir</a>
+                                <a href="/panel/editeruneannonce/{{annonce.id}}" class="btn btn-primary rounded-pill ml-1">Éditer</a>
                                 <a href="/panel/supprimeruneannonce/{{annonce.id}}" class="btn btn-danger rounded-pill ml-1">Supprimer</a>
                             </td>
                         </tr>

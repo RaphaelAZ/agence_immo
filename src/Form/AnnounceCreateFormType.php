@@ -56,6 +56,7 @@ class AnnounceCreateFormType extends AbstractType
             ->add('image', FileType::class, [
                 'label' => 'Image :',
                 'required' => true,
+                'data_class' => null,
                 'attr' => ['class' => 'form-control'],
             ])
             // ->add('creation')

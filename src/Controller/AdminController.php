@@ -74,10 +74,19 @@ class AdminController extends AbstractController
     #[Route('/panel/supprimeruneannonce/{id}', name: 'panel/supprimeruneannonce')]
     #[IsGranted('ROLE_ADMIN')]
     public function dashboardDeleteAnnounce($id, EntityManagerInterface $em) {
-        // $announce = $em->getRepository(Announce::class)->find($id);
+        $announce = $em->getRepository(Announce::class)->find($id);
 
-        // $em->remove($announce);
-        // $em->flush();
+        $image = $announce->getImage();
+        $cheminAncienneImage = $this->getParameter('images_directory') . '/' . $image;
+
+        $filesystem = new Filesystem();
+                
+        if ($filesystem->exists($cheminAncienneImage)) {
+            $filesystem->remove([$cheminAncienneImage]);
+        }
+
+        $em->remove($announce);
+        $em->flush();
 
         $announcesList = $em->getRepository(Announce::class)->findAll();
 

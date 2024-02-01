@@ -15,15 +15,15 @@ Tâches réalisées :
     - Gérer les annonces (CRUD)
   - Phase 4 : 
     - Donner la possibilité de faire des recherches dans la liste (barre de recherche, filtres)
+  - Phase 5 : 
+    - Voir cette demande dans le backoffice (voir si traité ou pas)
+    - Sur la fiche d’un bien, l’utilisateur peut demander à être recontacté (formulaire concernant l’annonce)
   - BONUS :
     - Comptes pour les clients
     
 
 
 Tâches restantes :
-  - Phase 5 : 
-    - Voir cette demande dans le backoffice (voir si traité ou pas)
-    - Sur la fiche d’un bien, l’utilisateur peut demander à être recontacté (formulaire concernant l’annonce) (STARTED)
   - BONUS :
     - Faire plusieurs images sur une même annonces (NOT DONE)
-    - Annonces en favoris (STARTED)
+    - Annonces en favoris (STARTED - NOT DONE)

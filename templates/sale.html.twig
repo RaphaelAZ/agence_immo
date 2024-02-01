@@ -35,6 +35,21 @@
             </div>
         </div>
         {% endblock %}
+
+        {% if is_granted('ROLE_ADMIN') %}
+            {% block recontact %}
+                {{ form_start(recontact_form) }}
+                    <div class="form-row d-flex justify-content-center">
+                        <div class="col-md-5 mb-3">
+                            {{ form_row(recontact_form.name) }}
+                            {{ form_row(recontact_form.phone) }}
+                            {{ form_row(recontact_form.email) }}
+                            <button type="submit" class="btn btn-primary">Demander à être contacter</button>
+                        </div>
+                    </div>
+                {{ form_end(recontact_form) }}
+            {% endblock %}
+        {% endif %}
     </div>
 
     {# Pied de page #}

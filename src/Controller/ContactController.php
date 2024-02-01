@@ -2,10 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Announce;
-use App\Entity\Contact;
 use App\Form\SendContactType;
-use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;

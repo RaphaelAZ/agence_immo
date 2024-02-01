@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Announce;
+use App\Entity\PendingContact;
 use App\Form\AnnounceFiltersType;
+use App\Form\RecontactFormType;
 use App\Repository\AnnounceRepository;
+use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 
 class AnnounceController extends AbstractController
 {
@@ -32,10 +35,32 @@ class AnnounceController extends AbstractController
         ]);
     }
 
-    public function uniqueAnnounce(ManagerRegistry $doctrine, int $id) {
+    public function uniqueAnnounce(ManagerRegistry $doctrine, int $id, EntityManagerInterface $em, Request $request) {
         $uniqueAnnounce = $doctrine->getRepository(Announce::class)->findOneBy(["id"=> $id]);
         $creationDate = $uniqueAnnounce->getCreation()->format("Y-m-d");
-        return $this->render('sale.html.twig',['sale' => $uniqueAnnounce, 'creation' => $creationDate]);
+
+        $pendingContact = new PendingContact();
+        $form = $this->createForm(RecontactFormType::class, $pendingContact);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser();
+            $pendingContact->setUser($user);
+            $pendingContact->setAnnounce($uniqueAnnounce);
+            $pendingContact->setDateContact(new DateTime());
+
+            $em->persist($pendingContact);
+            $em->flush();
+
+            return $this->redirectToRoute('annonce', ['id' => $id, 'success' => "Demande de contact envoyé avec succès."]);
+        }
+
+        return $this->render('sale.html.twig',[
+            'sale' => $uniqueAnnounce, 
+            'creation' => $creationDate,
+            'recontact_form' => $form
+        ]);
     }
 
     public function homePage() {

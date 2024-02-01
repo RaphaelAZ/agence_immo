@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Announce;
+use App\Entity\PendingContact;
 use App\Form\AnnounceCreateFormType;
+use App\Repository\PendingContactRepository;
 use App\Repository\UserRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
@@ -34,6 +36,16 @@ class AdminController extends AbstractController
 
         return $this->render('admin/dashboard-users.html.twig', [
             'users' => $users,
+        ]);
+    }
+
+    #[Route('/panel/recontacter', name: 'panel/recontacter')]
+    #[IsGranted('ROLE_ADMIN')]
+    public function dashboardPendingContact(EntityManagerInterface $doctrine) {
+        $pendingContacts = $doctrine->getRepository(PendingContact::class)->findAll();
+
+        return $this->render('admin/dashboard-recontact.html.twig', [
+            'contacts' => $pendingContacts,
         ]);
     }
 

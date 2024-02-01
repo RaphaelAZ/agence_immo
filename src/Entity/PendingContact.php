@@ -16,12 +16,22 @@ class PendingContact
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateContact = null;
+    #[ORM\Column(length: 255)]
+    private ?string $phone = null;
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
 
-    #[ORM\OneToOne(targetEntity:Announce::class)]
+    #[ORM\ManyToOne(targetEntity:Announce::class)]
     private $Announce;
 
-    #[ORM\OneToOne(targetEntity:User::class)]
+    #[ORM\ManyToOne(targetEntity:User::class)]
     private $User;
+
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
+    #[ORM\Column]
+    private ?bool $pending = null;
 
     public function getId(): ?int
     {
@@ -36,6 +46,74 @@ class PendingContact
     public function setDateContact(\DateTimeInterface $dateContact): static
     {
         $this->dateContact = $dateContact;
+
+        return $this;
+    }
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->User = $user;
+
+        return $this;
+    }
+    public function getAnnounce(): ?Announce
+    {
+        return $this->Announce;
+    }
+
+    public function setAnnounce(?Announce $annonce): self
+    {
+        $this->Announce = $annonce;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function isPending(): ?bool
+    {
+        return $this->pending;
+    }
+
+    public function setPending(bool $pending): static
+    {
+        $this->pending = $pending;
 
         return $this;
     }

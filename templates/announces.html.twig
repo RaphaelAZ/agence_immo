@@ -11,8 +11,8 @@
             <h1 class="h1 text-danger">Agence Azera</h1>
         </div>
         <hr>
-        {% block announces %}
 
+        {% block filters %}
             {{ form_start(form) }}
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
@@ -35,7 +35,9 @@
                     </div>
                 </div>
             {{ form_end(form) }}
+        {% endblock %}
 
+        {% block announces %}
             <div class="card-deck announces-list flex-wrap">
                 {% for key, announce in announces %}
                     <div class="card mb-4 announces-card">

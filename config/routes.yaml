@@ -25,3 +25,7 @@ deconnexion:
 
 panel_admin:
     path: '/panel'
+
+favorite:
+    path: '/favorite/{id}'
+    controller: App\Controller\AnnounceController::favThis

@@ -12,6 +12,30 @@
         </div>
         <hr>
         {% block announces %}
+
+            {{ form_start(form) }}
+                <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                        {{ form_row(form.title) }}
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        {{ form_row(form.minPrice) }}
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        {{ form_row(form.maxPrice) }}
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        {{ form_row(form.minSurface) }}
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        {{ form_row(form.maxSurface) }}
+                    </div>
+                    <div class="col-md-1 mb-3">
+                        <button type="submit" class="btn btn-primary">Filtrer</button>
+                    </div>
+                </div>
+            {{ form_end(form) }}
+
             <div class="card-deck announces-list flex-wrap">
                 {% for key, announce in announces %}
                     <div class="card mb-4 announces-card">

@@ -21,28 +21,35 @@ class AnnounceRepository extends ServiceEntityRepository
         parent::__construct($registry, Announce::class);
     }
 
-//    /**
-//     * @return Announce[] Returns an array of Announce objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findByFilters($filters)
+    {
+        $qb = $this->createQueryBuilder('a');
 
-//    public function findOneBySomeField($value): ?Announce
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        if ($filters['title']) {
+            $qb->andWhere('a.title LIKE :title')
+                ->setParameter('title', '%' . $filters['title'] . '%');
+        }
+
+        if ($filters['minPrice']) {
+            $qb->andWhere('a.price >= :minPrice')
+                ->setParameter('minPrice', $filters['minPrice']);
+        }
+
+        if ($filters['maxPrice']) {
+            $qb->andWhere('a.price <= :maxPrice')
+                ->setParameter('maxPrice', $filters['maxPrice']);
+        }
+
+        if ($filters['minSurface']) {
+            $qb->andWhere('a.surface >= :minSurface')
+                ->setParameter('minSurface', $filters['minSurface']);
+        }
+
+        if ($filters['maxSurface']) {
+            $qb->andWhere('a.surface <= :maxSurface')
+                ->setParameter('maxSurface', $filters['maxSurface']);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
 }

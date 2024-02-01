@@ -16,9 +16,9 @@
             <h2 class="d-flex align-center">
             <span>{{ sale.title }}</span>
             <span>
-                <button type="button" class="favori" onclick="toggleFavorite(this)">
-                    <span class="coeur-vide taille-coeur" data-annonce-id="{{sale.id}}">🤍</span>
-                    <span class="coeur-plein  taille-coeur" data-annonce-id="{{sale.id}}">❤️</span>
+                <button type="button" class="favori" onclick="toggleFavorite(this)" data-annonce-id="{{sale.id}}">
+                    <span class="coeur-vide taille-coeur">🤍</span>
+                    <span class="coeur-plein  taille-coeur">❤️</span>
                 </button>
             </span>
             </h2>

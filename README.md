@@ -1,5 +1,5 @@
 Import de données nécéssaires :
-  - Path du script pour la bdd : database/agence_immo.sql
+  - Path du script pour la bdd : database/agence_immo.sql (Script optionnel, on peut tout créer depuis le site)
 
 
 Tâches réalisées :

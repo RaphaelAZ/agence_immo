@@ -1,8 +1,20 @@
-Import de données nécéssaires :
-  - Path du script pour la bdd : database/agence_immo.sql (Script optionnel, on peut tout créer depuis le site)
+**Import de données :**
+  - Path du script pour la bdd : database/agence_immo.sql (Script optionnel, on peut créer toutes les données depuis le site hormis les admins/changements d'état des demandes de recontact)
 
+-------------------------------------------------------------------------
 
-Tâches réalisées :
+**Solution pour la réception des mails avec le formulaire de contact :**
+  - MailDev
+
+-------------------------------------------------------------------------
+
+**Accès au dashboard :**
+  - Modifier côté base pour passer un utilisateur admin
+  - ou Connexion avec les identifiants suivants : Raph -> Motdepasse123
+
+-------------------------------------------------------------------------
+
+**Tâches réalisées :**
   - Phase 1 (Obligatoire) :
     - Page d’accueil présentation agence immobilière
     - Page de liste d’annonces ventes
@@ -21,7 +33,7 @@ Tâches réalisées :
   - BONUS :
     - Comptes pour les clients
     
-
+-------------------------------------------------------------------------
 
 Tâches restantes :
   - BONUS :
